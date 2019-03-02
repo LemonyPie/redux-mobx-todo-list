@@ -6,3 +6,25 @@ $text-primary: #5c5c5c;
 
 $background-medium: $medium-gray;
 $background-primary: $primary-gray;
+
+$font-family-primary: 'source-sans-pro', sans-serif;
+
+$font-size-large: 1.5rem;
+$font-size-regular: 1rem;
+$font-size-small: 0.875rem;
+$font-size-x-small: 0.75rem;
+
+
+@mixin font-family-normal( $font-size ){
+  font-family: $font-family-primary;
+  font-size: $font-size;
+  font-weight: 400;
+  font-style: normal;
+}
+
+@mixin font-family-light( $font-size ){
+  font-family: $font-family-primary;
+  font-size: $font-size;
+  font-weight: 300;
+  font-style: normal;
+}

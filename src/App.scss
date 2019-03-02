@@ -30,4 +30,17 @@ body {
     }
 }
 
+.main {
+    display: flex;
+    width: 600px;
+    margin: 0 auto;
+    padding: 50px;
+    box-sizing: border-box;
+}
+
+h2 {
+    margin: 0 0 12px;
+    @include font-family-normal( $font-size-large );
+}
+
 
