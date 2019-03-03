@@ -35,12 +35,114 @@ body {
     width: 600px;
     margin: 0 auto;
     padding: 50px;
-    box-sizing: border-box;
 }
 
 h2 {
     margin: 0 0 12px;
     @include font-family-normal( $font-size-large );
 }
+
+.text-input {
+    padding: 3px 6px;
+    display: inline-block;
+    background: $background-light;
+    border: 1px solid $dark-gray;
+    border-radius: 4px;
+    @include font-family-light( $font-size-x-small );
+    font-style: italic;
+    box-sizing: border-box;
+}
+
+.radio-input {
+    input {
+        position: absolute;
+        visibility: hidden;
+    }
+
+    &__check {
+        display: inline-block;
+        width: 12px;
+        height: 12px;
+        box-sizing: border-box;
+        margin-right: 6px;
+        background: $background-light;
+        border: 3px solid $background-light;
+        border-radius: 50%;
+        box-shadow: 0 0 0 2px $background-dark;
+        transition: background .15s;
+    }
+
+    input:checked + &__check {
+        background: $background-dark;
+    }
+
+}
+
+.checkbox-input {
+    input {
+        position: absolute;
+        visibility: hidden;
+    }
+
+    &__check {
+        position: relative;
+        display: inline-block;
+        width: 14px;
+        height: 14px;
+        box-sizing: border-box;
+        margin-right: 6px;
+        background-size: 100%;
+        border: 2px solid $background-dark;
+        border-radius: 2px;
+        transform: translateY(2px);
+    }
+
+    input:checked + &__check {
+        &::before {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 2px;
+            height: 4px;
+            top: 4px;
+            left: 2px;
+            transform: rotateZ(-45deg);
+            background: $background-dark;
+        }
+
+        &::after {
+            content: '';
+            display: block;
+            position: absolute;
+            width: 2px;
+            height: 7px;
+            top: 2px;
+            left: 5px;
+            transform: rotateZ(45deg);
+            background: $background-dark;
+        }
+    }
+}
+
+.button {
+    outline: none;
+    display: inline-block;
+    padding: 1px 7px;
+    @include font-family-normal( $font-size-small );
+    color: $text-primary;
+    background: $background-light;
+    border: 1px solid $dark-gray;
+    border-radius: 4px;
+    transition: background .15s;
+    cursor: pointer;
+
+    &:active {
+        background: $background-dark;
+        border-color: $background-dark;
+        color: $background-light;
+    }
+}
+
+
 
 
