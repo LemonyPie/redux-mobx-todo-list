@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import './TodoList.scss';
 
 class TodoList extends Component {
+
+  handleClick = (id) => {
+    this.props.toggleTodoStatus(id);
+  };
+
   render() {
     const { todos } = this.props;
     return (
@@ -12,7 +17,11 @@ class TodoList extends Component {
           { todos.map( todo => (
             <li key={todo.id} className="todo-list__item">
               <label className="checkbox-input">
-                <input type="checkbox"/>
+                <input
+                  type="checkbox"
+                  checked={todo.completed}
+                  onChange={() => { this.handleClick(todo.id) } }
+                />
                 <span className="checkbox-input__check" />
                 { todo.name }
               </label>
@@ -29,4 +38,15 @@ function mapStateToProps(state){
   return { todos };
 }
 
-export default connect(mapStateToProps)(TodoList);
+function mapDispatchToProps(dispatch){
+  return {
+    toggleTodoStatus: todo => {
+      return dispatch({
+        type: 'TOGGLE_TODO_STATUS',
+        id: todo
+      })
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(TodoList);
