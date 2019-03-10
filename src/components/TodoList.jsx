@@ -8,6 +8,10 @@ class TodoList extends Component {
     this.props.toggleTodoStatus(id);
   };
 
+  handleRemove = (id) => {
+    this.props.removeTodo(id);
+  };
+
   render() {
     const { todos } = this.props;
     return (
@@ -25,6 +29,10 @@ class TodoList extends Component {
                 <span className="checkbox-input__check" />
                 { todo.name }
               </label>
+              <button
+                className="todo-list__remove-item"
+                onClick={ () => { this.handleRemove(todo.id) } }
+              >Remove todo</button>
             </li>
           ))}
         </ul>
@@ -43,6 +51,12 @@ function mapDispatchToProps(dispatch){
     toggleTodoStatus: todo => {
       return dispatch({
         type: 'TOGGLE_TODO_STATUS',
+        id: todo
+      })
+    },
+    removeTodo: todo => {
+      return dispatch({
+        type: 'REMOVE_TODO',
         id: todo
       })
     }

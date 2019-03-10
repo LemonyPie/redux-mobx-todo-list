@@ -6,4 +6,37 @@
   &__item {
     margin-bottom: 6px;
   }
+
+  &__remove-item {
+    position: relative;
+    display: inline-block;
+    font-size: 0;
+    width: 14px;
+    height: 14px;
+    padding: 0;
+    margin-left: 7px;
+    border: unset;
+    vertical-align: middle;
+    background: none;
+
+    &::before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      width: 2px;
+      height: 10px;
+      background: #707070;
+      transform: rotateZ(-45deg);
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      width: 2px;
+      height: 10px;
+      background: #707070;
+      transform: rotateZ(45deg);
+    }
+  }
 }

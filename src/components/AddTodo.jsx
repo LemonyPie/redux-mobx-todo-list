@@ -17,8 +17,10 @@ class AddTodo extends Component {
   };
 
   handleClick = () => {
-    this.props.addTodo( this.state.newTodoName );
-    this.setState({ newTodoName: '' });
+    if(this.state.newTodoName) {
+      this.props.addTodo(this.state.newTodoName);
+      this.setState({newTodoName: ''});
+    }
   };
 
   render() {
