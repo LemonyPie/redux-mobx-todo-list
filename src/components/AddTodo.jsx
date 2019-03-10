@@ -16,7 +16,9 @@ class AddTodo extends Component {
     this.setState({ newTodoName: event.target.value });
   };
 
-  handleClick = () => {
+  handleClick = (event) => {
+    event.preventDefault();
+
     if(this.state.newTodoName) {
       this.props.addTodo(this.state.newTodoName);
       this.setState({newTodoName: ''});
@@ -28,14 +30,16 @@ class AddTodo extends Component {
       <section className="addTodo">
         <h2>New todo</h2>
         <div>
-          <input
-            type="text"
-            className="text-input"
-            placeholder="New todo name"
-            value={ this.state.newTodoName }
-            onChange={ this.handleChange }
-          />
-          <button className="button" onClick={ this.handleClick }>Add</button>
+          <form onSubmit={ this.handleClick }>
+            <input
+              type="text"
+              className="text-input"
+              placeholder="New todo name"
+              value={ this.state.newTodoName }
+              onChange={ this.handleChange }
+            />
+            <button className="button" onClick={ this.handleClick }>Add</button>
+          </form>
         </div>
       </section>
     );
