@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { connect } from 'react-redux';
 import './Filters.scss';
 
 class Filters extends Component {
@@ -31,11 +32,29 @@ class Filters extends Component {
         </section>
         <section className="filters__filter">
           <h2>Actions</h2>
-          <button className="button" type="button">Remove completed</button>
+          <button
+            className="button"
+            type="button"
+            onClick={ this.props.removeCompleted }
+          >Remove completed</button>
         </section>
       </div>
     )
   }
 }
 
-export default Filters;
+function mapStateToProps(state) {
+  return state;
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    removeCompleted: () => {
+      return dispatch({
+        type: 'REMOVE_COMPLETED'
+      })
+    }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Filters);
