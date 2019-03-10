@@ -10,7 +10,7 @@ class TodoList extends Component {
         <h2>Your todos</h2>
         <ul className="todo-list">
           { todos.map( todo => (
-            <li className="todo-list__item">
+            <li key={todo.id} className="todo-list__item">
               <label className="checkbox-input">
                 <input type="checkbox"/>
                 <span className="checkbox-input__check" />
