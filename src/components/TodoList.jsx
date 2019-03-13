@@ -45,8 +45,26 @@ class TodoList extends Component {
 }
 
 function mapStateToProps(state){
-  const { todos } = state;
-  return { todos: todos.sort( (a, b) => a.completed - b.completed) };
+  const { todos, visibilityFilter } = state;
+  const { searchText, status } = visibilityFilter;
+
+  const filterByStatus = (todo) => {
+    switch(status){
+      case 'ACTIVE':
+        return !todo.completed;
+      case 'COMPLETED':
+        return todo.completed;
+      default:
+        return true;
+    }
+  };
+
+  return {
+    todos: todos
+      .filter( filterByStatus )
+      .filter( todo => todo.name.includes(searchText) )
+      .sort( (a, b) => a.completed - b.completed)
+  };
 }
 
 function mapDispatchToProps(dispatch){

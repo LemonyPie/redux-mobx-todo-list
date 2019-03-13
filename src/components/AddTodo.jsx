@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './AddTodo.scss';
 import { connect } from 'react-redux';
-import crypto from 'crypto';
 
 class AddTodo extends Component {
   constructor(props){
@@ -55,7 +54,6 @@ const mapDispatchToProps = (dispatch) => {
     addTodo: todo => {
       dispatch({
         type: 'ADD_TODO',
-        id: crypto.randomBytes(20).toString('hex'),
         name: todo
       });
     }

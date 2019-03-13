@@ -1,10 +1,11 @@
 import { ADD_TODO, REMOVE_TODO, REMOVE_COMPLETED, TOGGLE_TODO_STATUS } from '../actions/types';
+import crypto from 'crypto';
 
 const todo = ( state = {}, action ) => {
   switch (action.type) {
     case ADD_TODO:
       return {
-        id: action.id,
+        id: crypto.randomBytes(20).toString('hex'),
         name: action.name,
         completed: false
       };
