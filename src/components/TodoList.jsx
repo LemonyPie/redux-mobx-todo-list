@@ -43,7 +43,7 @@ class TodoList extends Component {
 
 function mapStateToProps(state){
   const { todos } = state;
-  return { todos };
+  return { todos: todos.sort( (a, b) => a.completed - b.completed) };
 }
 
 function mapDispatchToProps(dispatch){
