@@ -17,7 +17,8 @@ class TodoList extends Component {
     return (
       <section className="todo-list-section">
         <h2>Your todos</h2>
-        <ul className="todo-list">
+        { todos.length
+          ? ( <ul className="todo-list">
           { todos.map( todo => (
             <li key={todo.id} className="todo-list__item">
               <label className="checkbox-input">
@@ -34,8 +35,10 @@ class TodoList extends Component {
                 onClick={ () => { this.handleRemove(todo.id) } }
               >Remove todo</button>
             </li>
-          ))}
-        </ul>
+            ))}
+          </ul> )
+          : ( <p>You have no active todos</p> )
+        }
       </section>
     );
   }
