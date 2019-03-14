@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './AddTodo.scss';
+import { ADD_TODO } from "../actions/types";
 import { connect } from 'react-redux';
+import './AddTodo.scss';
 
 class AddTodo extends Component {
   constructor(props){
@@ -37,7 +38,12 @@ class AddTodo extends Component {
               value={ this.state.newTodoName }
               onChange={ this.handleChange }
             />
-            <button className="button" onClick={ this.handleClick }>Add</button>
+            <button
+              className="button"
+              onClick={ this.handleClick }
+            >
+              Add
+            </button>
           </form>
         </div>
       </section>
@@ -53,7 +59,7 @@ const mapDispatchToProps = (dispatch) => {
   return {
     addTodo: todo => {
       dispatch({
-        type: 'ADD_TODO',
+        type: ADD_TODO,
         name: todo
       });
     }

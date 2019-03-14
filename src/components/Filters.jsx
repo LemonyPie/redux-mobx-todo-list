@@ -1,5 +1,11 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
+import {
+  REMOVE_COMPLETED,
+  SET_SEARCH_TEXT_FILTER, SET_STATUS_FILTER_SHOW_ACTIVE,
+  SET_STATUS_FILTER_SHOW_ALL,
+  SET_STATUS_FILTER_SHOW_COMPLETED
+} from "../actions/types";
 import './Filters.scss';
 
 class Filters extends Component {
@@ -23,7 +29,13 @@ class Filters extends Component {
       <form className="filters">
         <fieldset className="filters__filter">
           <legend>Search</legend>
-          <input className="text-input" type="text" placeholder="Todo name" value={ this.state.searchText } onChange={ this.props.updateTextSearchFilter }/>
+          <input
+            className="text-input"
+            type="text"
+            placeholder="Todo name"
+            value={ this.state.searchText }
+            onChange={ this.props.updateTextSearchFilter }
+          />
         </fieldset>
         <fieldset className="filters__filter">
           <legend>Filter</legend>
@@ -32,7 +44,7 @@ class Filters extends Component {
               <input
                 type="radio"
                 name="filter"
-                onChange={ () => this.props.updateStatusFilter('SET_STATUS_FILTER_SHOW_ALL') }
+                onChange={ () => this.props.updateStatusFilter(SET_STATUS_FILTER_SHOW_ALL) }
                 checked={ this.state.status === 'ALL' }
                 value="ALL"/>
               <span className="radio-input__check" />
@@ -42,7 +54,7 @@ class Filters extends Component {
               <input
                 type="radio"
                 name="filter"
-                onChange={ () => this.props.updateStatusFilter('SET_STATUS_FILTER_SHOW_COMPLETED') }
+                onChange={ () => this.props.updateStatusFilter(SET_STATUS_FILTER_SHOW_COMPLETED) }
                 checked={ this.state.status === 'COMPLETED' }
                 value="COMPLETED"/>
               <span className="radio-input__check" />
@@ -52,7 +64,7 @@ class Filters extends Component {
               <input
                 type="radio"
                 name="filter"
-                onChange={ () => this.props.updateStatusFilter('SET_STATUS_FILTER_SHOW_ACTIVE') }
+                onChange={ () => this.props.updateStatusFilter(SET_STATUS_FILTER_SHOW_ACTIVE) }
                 checked={ this.state.status === 'ACTIVE' }
                 value="ACTIVE"/>
               <span className="radio-input__check" />
@@ -84,13 +96,13 @@ function mapDispatchToProps(dispatch) {
   return {
     removeCompleted: () => {
       return dispatch({
-        type: 'REMOVE_COMPLETED'
+        type: REMOVE_COMPLETED
       })
     },
     updateTextSearchFilter: e => {
       const searchText = e.target.value;
       return dispatch({
-        type: 'SET_SEARCH_TEXT_FILTER',
+        type: SET_SEARCH_TEXT_FILTER,
         searchText
       })
     },

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { TOGGLE_TODO_STATUS, REMOVE_TODO } from "../actions/types";
 import './TodoList.scss';
 
 class TodoList extends Component {
@@ -71,13 +72,13 @@ function mapDispatchToProps(dispatch){
   return {
     toggleTodoStatus: todo => {
       return dispatch({
-        type: 'TOGGLE_TODO_STATUS',
+        type: TOGGLE_TODO_STATUS,
         id: todo
       })
     },
     removeTodo: todo => {
       return dispatch({
-        type: 'REMOVE_TODO',
+        type: REMOVE_TODO,
         id: todo
       })
     }
