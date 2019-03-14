@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
+import { inject, observer } from 'mobx-react';
 import './TodoList.scss';
 
+@inject('store')
+@observer
 class TodoList extends Component {
   render() {
     return (
