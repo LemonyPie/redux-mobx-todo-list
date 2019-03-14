@@ -11,6 +11,13 @@ class Filters extends Component {
       status: props.status
     }
   }
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      searchText: nextProps.searchText,
+      status: nextProps.status
+    } );
+  }
+
   render() {
     return (
       <form className="filters">
@@ -22,17 +29,32 @@ class Filters extends Component {
           <legend>Filter</legend>
           <div className="filters__status-group">
             <label className="filters__status-group-label radio-input">
-              <input type="radio" name="filter" onChange={ () => this.props.updateStatusFilter('SET_STATUS_FILTER_SHOW_ALL') }/>
+              <input
+                type="radio"
+                name="filter"
+                onChange={ () => this.props.updateStatusFilter('SET_STATUS_FILTER_SHOW_ALL') }
+                checked={ this.state.status === 'ALL' }
+                value="ALL"/>
               <span className="radio-input__check" />
               Show all
             </label>
             <label className="filters__status-group-label radio-input">
-              <input type="radio" name="filter" onChange={ () => this.props.updateStatusFilter('SET_STATUS_FILTER_SHOW_COMPLETED') }/>
+              <input
+                type="radio"
+                name="filter"
+                onChange={ () => this.props.updateStatusFilter('SET_STATUS_FILTER_SHOW_COMPLETED') }
+                checked={ this.state.status === 'COMPLETED' }
+                value="COMPLETED"/>
               <span className="radio-input__check" />
               Show completed
             </label>
             <label className="filters__status-group-label radio-input">
-              <input type="radio" name="filter" onChange={ () => this.props.updateStatusFilter('SET_STATUS_FILTER_SHOW_ACTIVE') }/>
+              <input
+                type="radio"
+                name="filter"
+                onChange={ () => this.props.updateStatusFilter('SET_STATUS_FILTER_SHOW_ACTIVE') }
+                checked={ this.state.status === 'ACTIVE' }
+                value="ACTIVE"/>
               <span className="radio-input__check" />
               Show active
             </label>
@@ -52,7 +74,10 @@ class Filters extends Component {
 }
 
 function mapStateToProps(state) {
-  return state;
+  return {
+    status: state.visibilityFilter.status,
+    searchText: state.visibilityFilter.searchText
+  };
 }
 
 function mapDispatchToProps(dispatch) {

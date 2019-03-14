@@ -62,7 +62,7 @@ function mapStateToProps(state){
   return {
     todos: todos
       .filter( filterByStatus )
-      .filter( todo => todo.name.includes(searchText) )
+      .filter( todo => todo.name.toLowerCase().includes(searchText.toLocaleLowerCase()) )
       .sort( (a, b) => a.completed - b.completed)
   };
 }

@@ -14,7 +14,11 @@ const initialState = {
       name: 'Buy milk',
       completed: true
     }
-  ]
+  ],
+  visibilityFilter: {
+    searchText: '',
+    status: 'ALL'
+  }
 };
 
 export default createStore(reducer, initialState, devToolsEnhancer())
