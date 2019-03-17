@@ -20,8 +20,13 @@ class AddTodo extends Component {
 
   render() {
     return (
-      <form className="addTodo">
-        <h2>New todo</h2>
+      <form
+        className="addTodo"
+        onSubmit={ e => {
+          e.preventDefault(); this.handleAddTodo()
+        }}
+      >
+        <legend>New todo</legend>
         <fieldset>
           <input
             type="text"

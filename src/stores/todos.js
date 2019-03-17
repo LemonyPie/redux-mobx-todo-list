@@ -28,17 +28,21 @@ class TodoStore {
     }
   ];
 
-  @observable
-  visibilityFilter = {
-    textSearch: '',
-    state: 'ALL'
-  };
-
   @computed
   get visibleTodos(){
-    return this.todos.filter(
-      todo => new RegExp(this.visibilityFilter.textSearch, "i").test(todo.name)
-    )
+    const visibleTodosRegexp = new RegExp(this.visibilityFilter.textSearch, "i");
+    let visibleTodos = this.todos.filter(
+      todo => visibleTodosRegexp.test(todo.name)
+    );
+
+    switch(this.visibilityFilter.state){
+      case 'ACTIVE':
+        return visibleTodos.filter( todo => !todo.completed);
+      case 'COMPLETED':
+        return visibleTodos.filter( todo => todo.completed);
+      default:
+        return visibleTodos;
+    }
   }
 
   @action
@@ -56,7 +60,29 @@ class TodoStore {
       return todo;
     })
   }
+
+  @action
+  removeCompleted(){
+    this.todos = this.todos.filter( todo => !todo.completed)
+  }
+
+  @observable
+  visibilityFilter = {
+    textSearch: '',
+    state: 'ALL'
+  };
+
+  @action
+  setTextFilter(text){
+    this.visibilityFilter.textSearch = text;
+  }
+
+  @action
+  setStatusFilter(state){
+    this.visibilityFilter.state = state;
+  }
 }
+
 let store = new TodoStore();
 
 export default store;
