@@ -1,16 +1,42 @@
 import React, { Component } from 'react';
 import './AddTodo.scss';
+import {inject, observer} from "mobx-react";
 
+@inject('store')
+@observer
 class AddTodo extends Component {
+  constructor(props){
+    super(props);
+
+    this.state = {
+      newTodoName: ''
+    }
+  }
+
+  handleAddTodo = () => {
+    this.props.store.addNewTodo(this.state.newTodoName);
+    this.setState({ newTodoName: '' });
+  };
+
   render() {
     return (
-      <section className="addTodo">
+      <form className="addTodo">
         <h2>New todo</h2>
-        <div>
-          <input type="text" className="text-input" placeholder="New todo name"/>
-          <button className="button">Add</button>
-        </div>
-      </section>
+        <fieldset>
+          <input
+            type="text"
+            className="text-input"
+            placeholder="New todo name"
+            value={this.state.newTodoName}
+            onChange={ e => { this.setState({newTodoName: e.target.value}) }}
+          />
+          <button
+            className="button"
+            type="button"
+            onClick={ this.handleAddTodo }
+          >Add</button>
+        </fieldset>
+      </form>
     );
   }
 }

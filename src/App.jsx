@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Provider } from 'mobx-react';
-import Store from './stores';
+import store from './stores/todos';
 import Filters from './components/Filters';
 import AddTodo from './components/AddTodo';
 import TodoList from './components/TodoList';
@@ -14,7 +14,7 @@ class App extends Component {
         <header className="header">
             <h1>Todo list</h1>
         </header>
-        <Provider store={ Store }>
+        <Provider store={ store }>
           <main className="main">
             <Filters />
             <div>

@@ -28,6 +28,7 @@
   ],
   "devDependencies": {
     "@babel/plugin-proposal-decorators": "^7.3.0",
-    "customize-cra": "^0.2.12"
+    "customize-cra": "^0.2.12",
+    "mobx-react-devtools": "^6.1.1"
   }
 }

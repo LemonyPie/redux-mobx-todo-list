@@ -37,9 +37,20 @@ body {
   padding: 50px;
 }
 
-h2 {
+h2, legend {
   margin: 0 0 12px;
   @include font-family-normal( $font-size-large );
+}
+
+fieldset {
+  padding: 0;
+  border: unset;
+  margin: 0 0 25px;
+}
+
+legend {
+  padding: 0;
+  border: unset;
 }
 
 .text-input {

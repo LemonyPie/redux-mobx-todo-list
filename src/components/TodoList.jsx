@@ -6,17 +6,26 @@ import './TodoList.scss';
 @observer
 class TodoList extends Component {
   render() {
+    const todos = this.props.store.visibleTodos;
+
     return (
       <section className="todo-list-section">
         <h2>Your todos</h2>
         <ul className="todo-list">
-          <li className="todo-list__item">
-            <label className="checkbox-input">
-              <input type="checkbox"/>
-              <span className="checkbox-input__check" />
-              Buy milk
-            </label>
-          </li>
+          { todos.map( todo => (
+            <li className="todo-list__item" key={todo.id}>
+              <label className="checkbox-input">
+                <input
+                  type="checkbox"
+                  checked={ todo.completed }
+                  // onChange={ () => todo.completed = !todo.completed }
+                  onChange={ () => this.props.store.toggleTodoStatus(todo.id) }
+                />
+                <span className="checkbox-input__check" />
+                { todo.name }
+              </label>
+            </li>
+          ))}
         </ul>
       </section>
     );
