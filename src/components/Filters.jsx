@@ -9,22 +9,8 @@ import {
 import './Filters.scss';
 
 class Filters extends Component {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      searchText: props.searchText,
-      status: props.status
-    }
-  }
-  componentWillReceiveProps(nextProps) {
-    this.setState({
-      searchText: nextProps.searchText,
-      status: nextProps.status
-    } );
-  }
-
   render() {
+    const { searchText, status } = this.props;
     return (
       <form className="filters">
         <fieldset className="filters__filter">
@@ -33,7 +19,7 @@ class Filters extends Component {
             className="text-input"
             type="text"
             placeholder="Todo name"
-            value={ this.state.searchText }
+            value={ searchText }
             onChange={ this.props.updateTextSearchFilter }
           />
         </fieldset>
@@ -45,7 +31,7 @@ class Filters extends Component {
                 type="radio"
                 name="filter"
                 onChange={ () => this.props.updateStatusFilter(SET_STATUS_FILTER_SHOW_ALL) }
-                checked={ this.state.status === 'ALL' }
+                checked={ status === 'ALL' }
                 value="ALL"/>
               <span className="radio-input__check" />
               Show all
@@ -55,7 +41,7 @@ class Filters extends Component {
                 type="radio"
                 name="filter"
                 onChange={ () => this.props.updateStatusFilter(SET_STATUS_FILTER_SHOW_COMPLETED) }
-                checked={ this.state.status === 'COMPLETED' }
+                checked={ status === 'COMPLETED' }
                 value="COMPLETED"/>
               <span className="radio-input__check" />
               Show completed
@@ -65,7 +51,7 @@ class Filters extends Component {
                 type="radio"
                 name="filter"
                 onChange={ () => this.props.updateStatusFilter(SET_STATUS_FILTER_SHOW_ACTIVE) }
-                checked={ this.state.status === 'ACTIVE' }
+                checked={ status === 'ACTIVE' }
                 value="ACTIVE"/>
               <span className="radio-input__check" />
               Show active
