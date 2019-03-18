@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { TOGGLE_TODO_STATUS, REMOVE_TODO } from "../actions/types";
+import getVisibleTodos from '../selectors/todos';
 import './TodoList.scss';
 
 class TodoList extends Component {
@@ -46,26 +47,9 @@ class TodoList extends Component {
 }
 
 function mapStateToProps(state){
-  const { todos, visibilityFilter } = state;
-  const { searchText, status } = visibilityFilter;
-
-  const filterByStatus = (todo) => {
-    switch(status){
-      case 'ACTIVE':
-        return !todo.completed;
-      case 'COMPLETED':
-        return todo.completed;
-      default:
-        return true;
-    }
-  };
-
   return {
-    todos: todos
-      .filter( filterByStatus )
-      .filter( todo => todo.name.toLowerCase().includes(searchText.toLocaleLowerCase()) )
-      .sort( (a, b) => a.completed - b.completed)
-  };
+    todos: getVisibleTodos(state)
+  }
 }
 
 function mapDispatchToProps(dispatch){
